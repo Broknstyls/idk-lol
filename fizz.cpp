@@ -21,7 +21,6 @@ int CPUHand(std::vector <int> deck, std::vector <int> Used){
     {
         int randomizer = rand() % AvailableCards.size();
         deck.at(i) =  AvailableCards.at(randomizer);
-        std::cout<< deck.at(i) << '\n';
         AvailableCards.erase(AvailableCards.begin() + randomizer);
     }
 }
@@ -31,6 +30,5 @@ int main(){
     std::cout<< "welcome to fizzbuzz roulette! "<< '\n';
     std::cout<< "your cards are: "<< '\n';
     YourHand(playerCards,UsedCards);
-    std::cout<< "the computers cards are: " << '\n';
     CPUHand(CPUCards,UsedCards);
 }
