@@ -16,6 +16,8 @@ int YourHand(std::vector <int> deck, std::vector <int> Used){
     
 }
 int main(){
+    std::vector <int> playerCards = {0,0,0};
     std::cout<< "welcome to fizzbuzz roulette! "<< '\n';
     std::cout<< "your cards are: "<< '\n';
+    YourHand(playerCards,UsedCards);
 }
