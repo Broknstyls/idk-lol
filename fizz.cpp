@@ -25,10 +25,15 @@ int CPUHand(std::vector <int> deck, std::vector <int> Used){
     }
 }
 int main(){
+    int YourThrow;
+    int CPUthrow;
     std::vector <int> playerCards = {0,0,0};
     std::vector <int> CPUCards = {0,0,0};
     std::cout<< "welcome to fizzbuzz roulette! "<< '\n';
     std::cout<< "your cards are: "<< '\n';
     YourHand(playerCards,UsedCards);
     CPUHand(CPUCards,UsedCards);
+    std::cout<< "which card are you choosing: "<< '\n';
+    std::cin>>YourThrow;
+
 }
