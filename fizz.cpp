@@ -23,17 +23,39 @@ int CPUHand(std::vector <int> deck, std::vector <int> Used){
         deck.at(i) =  AvailableCards.at(randomizer);
         AvailableCards.erase(AvailableCards.begin() + randomizer);
     }
+    return 0;
+}
+int round(int playernum,int playerscore, std::string player){
+    if (playernum % 15 == 0 )
+    {
+        playerscore = 3;
+    } else if(playernum % 5 == 0){
+        playerscore = 2;
+
+    } else if(playernum % 3 == 0){
+        playerscore = 1;
+    } else{
+        playerscore = 0;
+    }
+    std::cout<< player << "scored " << playerscore << "points!";
+
 }
 int main(){
+    std::string player;
     int YourThrow;
+    int YourScore;
     int CPUthrow;
     std::vector <int> playerCards = {0,0,0};
     std::vector <int> CPUCards = {0,0,0};
     std::cout<< "welcome to fizzbuzz roulette! "<< '\n';
+    std::cout<< "whats your name?";
+    std::cin>> player;
     std::cout<< "your cards are: "<< '\n';
     YourHand(playerCards,UsedCards);
     CPUHand(CPUCards,UsedCards);
     std::cout<< "which card are you choosing: "<< '\n';
     std::cin>>YourThrow;
+    round(YourThrow,YourScore,player);
+
 
 }
