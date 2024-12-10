@@ -6,17 +6,6 @@ int CPUpoints;
 int AllCardsUsed;
 std::vector <int> AvailableCards = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30};
 std::vector <int> UsedCards;
-int YourHand(std::vector <int> deck, std::vector <int> Used){
-    for (int i = 0; i <= 2; i++)
-    {
-        int randomizer = rand() % AvailableCards.size();
-        deck.at(i) =  AvailableCards.at(randomizer);
-        std::cout<< deck.at(i) << '\n';
-        AvailableCards.erase(AvailableCards.begin() + randomizer);
-        
-    }
-    return 0;
-}
 int CPUHand(std::vector <int> deck1, std::vector <int> Used){
     for (int i = 0; i <= 2; i++)
     {
@@ -25,22 +14,6 @@ int CPUHand(std::vector <int> deck1, std::vector <int> Used){
         AvailableCards.erase(AvailableCards.begin() + randomizer1);
     }
     return 0;
-}
-int round(int playernum,int playerscore, std::string player){
-    if (playernum % 15 == 0 )
-    {
-        playerscore = 3;
-    } else if(playernum % 5 == 0){
-        playerscore = 2;
-
-    } else if(playernum % 3 == 0){
-        playerscore = 1;
-    } else{
-        playerscore = 0;
-    }
-    std::cout<< player << " threw a " << playernum << '\n';
-    std::cout<< player << "scored " << playerscore << " points!" << '\n';
-        return 0;
 }
 int main(){
     int innerRandomizer;
