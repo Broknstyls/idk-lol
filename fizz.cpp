@@ -1,6 +1,8 @@
 #include<iostream>
 #include <cmath>
 #include <vector>
+int yourpoints;
+int CPUpoints;
 int AllCardsUsed;
 std::vector <int> AvailableCards = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30};
 std::vector <int> UsedCards;
@@ -64,11 +66,13 @@ int main(){
     std::cin>>YourThrow;
     for (int i = 0; i <= 2; i++)
     {
+        int found;
         if(YourThrow != playerCards.at(i) && i !=2){
             std::cout<< "testing..." << '\n';
         } else if (YourThrow == playerCards.at(i)){
                 std::cout<< "card number " << i << " chosen." << '\n';
-        } else if (YourThrow != playerCards.at(i) && i ==2){
+                found = 1;
+        } else if (YourThrow != playerCards.at(i) && i ==2 && found !=1){
             std::cout<< "invalid card, start again";
             return 0;
         }
@@ -125,14 +129,16 @@ int main(){
             
    if(YourScore > CPUscore){
     std::cout<< "YOU WIN" << "\n";
+    yourpoints++;
    } else if (YourScore < CPUscore)
    {
     std::cout<< "you lose" << "\n";
+    CPUpoints++;
    }
    std::cout<< "do you want to play again?" << "\n";
    std::string playagain;
    std::cin>>playagain;
-   if(playagain != "no"){
+   if(playagain != "no" && AvailableCards.size() != 0){
     for (int i = 0; i <=2; i++)
     {
         std::cout << playerCards.at(i) << " was thrown away" << '\n';
@@ -142,6 +148,20 @@ int main(){
     }
     main();
    }
+   else if (playagain == "no" || AvailableCards.size() == 0)
+   {
+    std::cout<< "game over"<< '\n';
+    if (yourpoints > CPUpoints)
+    {
+        std::cout << "you won by " << yourpoints - CPUpoints << " points!";
+    } else if (CPUpoints > yourpoints)
+    {
+        std::cout<< "you lost by" << CPUpoints - yourpoints << " points...";
+    }
+    
+    
+   }
+   
 
 
 
