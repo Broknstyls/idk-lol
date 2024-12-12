@@ -72,7 +72,7 @@ case 3:
 }
 }
 std::cout<< "your power up is a: " << '\n';
-powermachine = 1;
+powermachine = rand() % 4;
 switch (powermachine)
 {
 case 1:
@@ -123,7 +123,7 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
         } else if (YourThrow == playerCards.at(i)){
                 std::cout<< "card number " << i << " chosen." << '\n';
                 found = 1;
-        } else if (YourThrow != playerCards.at(i) && i ==2 && found !=1){
+        } else if (YourThrow != playerCards.at(i) && i ==playerCards.size() && found !=1){
             std::cout<< "invalid card, start again";
             return 0;
         }
