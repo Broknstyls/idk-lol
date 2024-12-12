@@ -1,20 +1,26 @@
 #include<iostream>
 #include <cmath>
 #include <vector>
+std::vector <std::string> playerPowerUps;
+std::vector <std::string> CPUPowerUps;
+int powermachine;
+int puttytimer = 2;
+bool puttyq;
+int puttythrow;
 int yourpoints;
 int CPUpoints;
 int AllCardsUsed;
 std::vector <int> AvailableCards = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30};
 std::vector <int> UsedCards;
-int CPUHand(std::vector <int> deck1, std::vector <int> Used){
-    for (int i = 0; i <= 2; i++)
-    {
-        int randomizer1 = rand() % AvailableCards.size();
-        deck1.at(i) =  AvailableCards.at(randomizer1);
-        AvailableCards.erase(AvailableCards.begin() + randomizer1);
-    }
-    return 0;
-}
+  
+
+  int putty( int key){
+        if(puttytimer >=0 && puttyq == true){
+            return key;
+        } else{
+                std:: cout << " you dont have a putty, so..... yeah";
+        }
+  }
 int main(){
     int innerRandomizer;
     std::string player;
