@@ -4,23 +4,34 @@
 std::vector <std::string> playerPowerUps;
 std::vector <std::string> CPUPowerUps;
 int powermachine;
+std::string uncleben;
+std::string activepowerup;
 int puttytimer = 2;
 bool puttyq;
+bool blenderq;
+bool plungerq;
+bool pieq;
+bool shaverq;
 int puttythrow;
 int yourpoints;
 int CPUpoints;
 int AllCardsUsed;
 std::vector <int> AvailableCards = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30};
 std::vector <int> UsedCards;
-  
 
-  int putty( int key){
-        if(puttytimer >=0 && puttyq == true){
-            return key;
-        } else{
-                std:: cout << " you dont have a putty, so..... yeah";
-        }
+int powerUp(  std::string key, std::vector <int> Cards){
+  if(key == "putty" && puttyq == true){
+    std:: cout<< "what card are you making a copy of:";
+    for (int i = 0; i < Cards.size(); i++)
+    {
+        std::cout<< Cards.at(i) << '\n';
+    }
+    std::cin>> puttythrow;
+    std::cout<< puttythrow << "has been duplicated" << '\n';
+    return 0;
   }
+}
+
 int main(){
     int innerRandomizer;
     std::string player;
@@ -33,7 +44,7 @@ int main(){
     std::cout<< "whats your name?"<< '\n' ;
     std::cin>> player;
     std::cout<< "your cards are: "<< '\n';
-    //YourHand(playerCards,UsedCards);
+
     srand(time(NULL));
             for(int i = 0;i<=2;i++){
                     int randomizer = rand() % AvailableCards.size();
@@ -41,6 +52,66 @@ int main(){
                     std::cout<< playerCards.at(i) << '\n';
                     AvailableCards.erase(AvailableCards.begin() + randomizer);
                                      }
+if (puttyq == true)
+{
+switch (puttytimer)
+{
+case 0:
+    std::cout<< "the putty is drying, you cant use it yet" << '\n';
+    break;
+case 1:
+    std::cout<< "the putty is ready for use" << '\n';
+    break;
+case 2:
+    std::cout<< "last chance to use the putty, it will break on the next turn";
+    break;
+case 3:
+    std::cout<< "the putty has broken";
+    puttyq = false;
+}
+}
+std::cout<< "your power up is a: " << '\n';
+powermachine = 1;
+switch (powermachine)
+{
+case 1:
+    std::cout<< "Paper mache"<< '\n';
+    puttyq = true;
+    playerPowerUps.push_back("Putty");
+    break;
+case 2:
+    std::cout<< " Schrodingers pie" << '\n';
+    pieq = true;
+    playerPowerUps.push_back("Schrodinger's pie");
+    break;
+case 3: 
+    std::cout<< " A plunger, it can attach to the bottom of the table..." << '\n';
+    plungerq = true;
+    playerPowerUps.push_back("Plunger");
+    break;
+case 4:
+    std::cout<< "a blender?, really?" <<'\n';
+    std:: cout<< "my intern tells me its a food processor, personally i dont get it" << '\n';
+    playerPowerUps.push_back("food processor that looks eerily close to a blender");
+    blenderq =true;
+    break;
+default: std::cout<< "a shaving machine but its unplugged, needs some voltage to work,"<<'\n';
+        playerPowerUps.push_back("buzzer without a buzz");
+    shaverq = true;
+    break;
+}
+        std::cout<< " are you using any power up?: " << '\n';
+        std::cin>> uncleben; 
+        if(uncleben == "yes"){
+            std:: cout<< " which power up are you choosing? " << '\n';
+            for (int i = 0; i < playerPowerUps.size(); i++)
+            {
+                std::cout<< playerPowerUps.at(i) << '\n';
+            }
+            std::cin >> activepowerup;
+            powerUp(activepowerup,playerCards);
+
+        }
     std::cout<< "which card are you choosing: "<< '\n';
     std::cin>>YourThrow;
     for (int i = 0; i <= 2; i++)
@@ -48,7 +119,7 @@ int main(){
         int found;
         if(YourThrow != playerCards.at(i) && i !=2){
             std::cout<< "testing..." << '\n';
-        } else if (YourThrow == playerCards.at(i)){
+        } else if (YourThrow == playerCards.at(i) || puttythrow){
                 std::cout<< "card number " << i << " chosen." << '\n';
                 found = 1;
         } else if (YourThrow != playerCards.at(i) && i ==2 && found !=1){
@@ -66,7 +137,7 @@ int main(){
         AvailableCards.erase(AvailableCards.begin() + randomizer1);
     }
     int CPUthrow = CPUCards.at(1);
-   // round(CPUthrow,CPUscore, "The CPU");
+
             if (YourThrow % 15 == 0)
             {
                 YourScore = 3;
