@@ -28,6 +28,7 @@ int powerUp(  std::string key, std::vector <int> Cards){
     }
     std::cin>> puttythrow;
     std::cout<< puttythrow << "has been duplicated" << '\n';
+    Cards.push_back(puttythrow);
     return 0;
   }
 }
@@ -114,12 +115,12 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
         }
     std::cout<< "which card are you choosing: "<< '\n';
     std::cin>>YourThrow;
-    for (int i = 0; i <= 2; i++)
+    for (int i = 0; i < playerCards.size(); i++)
     {
         int found;
-        if(YourThrow != playerCards.at(i) && i !=2){
+        if(YourThrow != playerCards.at(i) && i != playerCards.size()){
             std::cout<< "testing..." << '\n';
-        } else if (YourThrow == playerCards.at(i) || puttythrow){
+        } else if (YourThrow == playerCards.at(i)){
                 std::cout<< "card number " << i << " chosen." << '\n';
                 found = 1;
         } else if (YourThrow != playerCards.at(i) && i ==2 && found !=1){
