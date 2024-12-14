@@ -1,6 +1,7 @@
 #include<iostream>
 #include <cmath>
 #include <vector>
+#include <windows.h>
 std::vector <std::string> playerPowerUps;
 std::vector <std::string> CPUPowerUps;
 int powermachine;
@@ -30,7 +31,50 @@ int powerUp(  std::string key, std::vector <int> Cards){
     std::cout<< puttythrow << "has been duplicated" << '\n';
     Cards.push_back(puttythrow);
     return 0;
+  } else if (key == "pie" || key == "schrodingers pie" && pieq == true)
+  {
+    int deadoralive = rand() % 2;
+    int cat;
+    int observation;
+    std::cout<< "what number are you flipping?:" << '\n';
+    std::cin>>cat;
+   for (int i = 0; i < Cards.size(); i++)
+   {
+    if(cat == Cards.at(i)){
+        std::cout<< "card picked, about to be flipped" << '\n';
+        std::cout<< cat << "has been flipped to: ";
+        observation = i;
+        switch (deadoralive)
+        {
+        case 1:
+        cat = Cards.at(observation) + 2;
+        if(cat >=30){
+            cat = 30;
+        } else{
+        Cards.at(observation) = cat;
+            break;
+        }
+        
+        default: 
+        float catq;
+        float cata = Cards.at(observation);
+        catq =  cata/3.14;
+        cat = round(catq);
+        if(cat <=0){
+            cat++;
+        }
+        Cards.at(observation) = cat;
+            break;
+        }
+        std::cout<< cat;
+    }
+
+
+
+   }
+   
   }
+  return 0;
 }
 
 int main(){
@@ -72,7 +116,7 @@ case 3:
 }
 }
 std::cout<< "your power up is a: " << '\n';
-powermachine = rand() % 4;
+powermachine = 2;
 switch (powermachine)
 {
 case 1:
@@ -103,6 +147,7 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
 }
         std::cout<< " are you using any power up?: " << '\n';
         std::cin>> uncleben; 
+
         if(uncleben == "yes"){
             std:: cout<< " which power up are you choosing? " << '\n';
             for (int i = 0; i < playerPowerUps.size(); i++)
@@ -156,6 +201,7 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
             }
           std::cout<< "you threw a" << YourThrow << '\n';
           std::cout<< "you scored a" << YourScore << '\n';
+
             if (CPUthrow % 15 == 0)
             {
                 CPUscore = 3;
@@ -172,7 +218,9 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
                 CPUscore =0;
             }
         std::cout<< "The CPU threw a" << CPUthrow << '\n';
+
         std::cout<< "it scored " << CPUscore; 
+
             
             
             
