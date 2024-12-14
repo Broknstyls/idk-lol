@@ -132,7 +132,7 @@ case 3:
 }
 }
 std::cout<< "your power up is a: " << '\n';
-powermachine = 3;
+powermachine = rand() % 4;
 switch (powermachine)
 {
 case 1:
