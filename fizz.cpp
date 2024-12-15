@@ -9,18 +9,36 @@ std::string uncleben;
 std::string activepowerup;
 int puttytimer = 2;
 bool puttyq;
+bool CPUputtyq;
 bool blenderq;
+bool CPUblenderq;
 bool plungerq;
 bool plungerconfirm;
 bool pieq;
+bool CPUpieq;
 bool shaverq;
+bool CPUshaverq;
 int puttythrow;
 int yourpoints;
 int CPUpoints;
 int AllCardsUsed;
 std::vector <int> AvailableCards = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30};
 std::vector <int> UsedCards;
-
+int brain(std::string key, std::vector <int> Cards, std::vector <int> Deck, std::vector <int> thrown){
+    for (int i = 0; i < Cards.size(); i++)
+    {
+        if (Cards.at(i) % 15 == 0 && CPUputtyq == true)
+        {
+            return i;
+        } else if (Cards.at(i) % 5 == 0 && Cards.at(i) >= 20)
+        {
+            return i;
+        }
+        
+        
+    }
+    
+}
 int powerUp(  std::string key, std::vector <int> Cards, std::vector <int> Deck, std::vector <int> thrown){
   if(key == "putty" && puttyq == true){
     std:: cout<< "what card are you making a copy of:";
@@ -31,6 +49,7 @@ int powerUp(  std::string key, std::vector <int> Cards, std::vector <int> Deck, 
     std::cin>> puttythrow;
     std::cout<< puttythrow << "has been duplicated" << '\n';
     Cards.push_back(puttythrow);
+    puttyq = false;
     return 0;
   } else if (key == "pie" || key == "schrodingers pie" && pieq == true)
   {
@@ -73,7 +92,7 @@ int powerUp(  std::string key, std::vector <int> Cards, std::vector <int> Deck, 
 
 
    }
-   
+   pieq = false;
   }
   else if(key == "plunger" || key == "flush" && plungerq == true){
     for(int i = 0;i<Cards.size();i++){
@@ -89,7 +108,43 @@ int powerUp(  std::string key, std::vector <int> Cards, std::vector <int> Deck, 
     }
     std::cout<< "the board has been purged, scores will remain, but your cards and power ups will be reset" << "\n";
     plungerconfirm = true;
-  }
+    plungerq = false;
+  } else if (key == "blender" || key == "food processor" || key == "blend" && blenderq == true)
+  {
+    int mode = rand() % 2;
+    int result;
+    switch (mode)
+    {
+    case 1:
+        for (int i = 0; i < Cards.size(); i++)
+        {
+            result = result + Cards.at(i);
+            Cards.erase(Cards.begin());
+
+        }
+        Cards.push_back(result);
+        break;
+    
+    default:
+    result;
+    for (int i = 0; i < Cards.size(); i++)
+    {
+        result = result * Cards.at(i);
+        std:
+        Cards.erase(Cards.begin());
+    }
+    Cards.push_back(result);
+        break;
+    }
+    if (result > 30)
+    {
+        result = result % 30;
+    }
+    
+            std::cout<< "your cards were all blended," <<'\n';
+        std::cout<< result << " is your new card";
+        blenderq = false;
+  } 
   return 0;
 }
 
@@ -132,7 +187,7 @@ case 3:
 }
 }
 std::cout<< "your power up is a: " << '\n';
-powermachine = rand() % 4;
+powermachine = rand() % 5;
 switch (powermachine)
 {
 case 1:
