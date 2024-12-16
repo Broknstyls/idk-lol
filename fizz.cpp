@@ -10,6 +10,8 @@ std::string activepowerup;
 int puttytimer = 2;
 bool puttyq;
 bool CPUputtyq;
+int CPUmold;
+int CPUmoldtimer;
 bool blenderq;
 bool CPUblenderq;
 bool plungerq;
@@ -27,13 +29,36 @@ std::vector <int> UsedCards;
 int brain(std::string key, std::vector <int> Cards, std::vector <int> Deck, std::vector <int> thrown){
     for (int i = 0; i < Cards.size(); i++)
     {
-        if (Cards.at(i) % 15 == 0 && CPUputtyq == true)
+        if (Cards.at(i) % 15 == 0)
         {
+            if (CPUputtyq == true)
+            {
+                CPUmold = Cards.at(i);
+                CPUmoldtimer = 2;
+            }
+            
             return i;
         } else if (Cards.at(i) % 5 == 0 && Cards.at(i) >= 20)
         {
+             if (CPUputtyq == true)
+            {
+                CPUmold = Cards.at(i);
+                CPUmoldtimer = 2;
+            }
             return i;
         }
+        int minusthree = Cards.at(i) - 3;
+        double normal = Cards.at(i);
+        int square = sqrt(normal);
+        if (minusthree % 10 == 0 || square % 2 == 0 ||normal == 1 )
+        {
+            if (CPUpieq == true)
+            {
+                // port schrodingers pie here;
+            }
+            
+        }
+        
         
         
     }
