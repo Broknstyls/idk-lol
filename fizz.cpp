@@ -239,7 +239,6 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
         
     }
 
- int CPUthrow = brain(CPUCards,AvailableCards,UsedCards);
 
     for (int i = 0; i <= 2; i++)
     {
@@ -265,6 +264,17 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
             }
           std::cout<< "you threw a" << YourThrow << '\n';
           std::cout<< "you scored a" << YourScore << '\n';
+          for (int i = 0; i < CPUCards.size(); i++)
+          {
+            if (CPUCards.at(i) % 15 == 0)
+            {
+                CPUthrow = CPUCards.at(i);
+            }
+            
+          }
+          
+           int CPUthrow = CPUCards.at(1);
+
 
             if (CPUthrow % 15 == 0)
             {
