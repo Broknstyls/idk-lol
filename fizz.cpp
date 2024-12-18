@@ -26,29 +26,32 @@ int CPUpoints;
 int AllCardsUsed;
 std::vector <int> AvailableCards = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30};
 std::vector <int> UsedCards;
-int brain(std::string key, std::vector <int> Cards, std::vector <int> Deck, std::vector <int> thrown){
+int brain(std::vector <int> Cards, std::vector <int> Deck, std::vector <int> thrown){
     int j;
     for (int i = 0; i < Cards.size(); i++)
     {
         if (Cards.at(i) % 15 == 0)
         {
             j = Cards.at(i);
+            std::cout<< "fizzbuzz" << j <<'\n';
             if (CPUputtyq == true)
             {
                 CPUmold = Cards.at(i);
+                std::cout<< "putty true" << '\n';
                 CPUmoldtimer = 2;
             }
             
-            return j;
+
         } else if (Cards.at(i) % 5 == 0 && Cards.at(i) >= 20)
         {
             j = Cards.at(i);
+            std::cout<< "buzz20" << j << '\n';
              if (CPUputtyq == true)
             {
                 CPUmold = Cards.at(i);
                 CPUmoldtimer = 2;
             }
-            return 0;
+
         }
         int minusthree = Cards.at(i) - 3;
         double normal = Cards.at(i);
@@ -56,6 +59,7 @@ int brain(std::string key, std::vector <int> Cards, std::vector <int> Deck, std:
         if (Cards.at(i) % 5 == 0)
         {
              j = i;
+             std::cout<< "normalbuzz" << j << '\n';
             if (CPUputtyq == true)
             {
                 CPUmold = Cards.at(i);
@@ -66,6 +70,7 @@ int brain(std::string key, std::vector <int> Cards, std::vector <int> Deck, std:
         if (Cards.at(i) % 3 == 0)
         {
              j = i;
+             std::cout << 'fizz' << j << '\n';
             if (CPUputtyq == true)
             {
                 CPUmold = Cards.at(i);
@@ -79,6 +84,7 @@ int brain(std::string key, std::vector <int> Cards, std::vector <int> Deck, std:
             int card = Cards.at(i);
             if (CPUpieq == true)
             {
+                std::cout << "pie applicable" << j << '\n';
                 int pierecipe = rand() % 2;
                 switch (pierecipe)
                 {
@@ -93,7 +99,7 @@ int brain(std::string key, std::vector <int> Cards, std::vector <int> Deck, std:
                     break;
                 }
                 Cards.push_back(card);
-                return card;
+
             }
             
         } 
@@ -119,7 +125,7 @@ int brain(std::string key, std::vector <int> Cards, std::vector <int> Deck, std:
                     }
                     if (i == Cards.size())
                     {
-                        return drink;
+
                     }
                     
                 }
@@ -132,7 +138,7 @@ int brain(std::string key, std::vector <int> Cards, std::vector <int> Deck, std:
         
         
     }
-    
+    return j;
 }
 int powerUp(  std::string key, std::vector <int> Cards, std::vector <int> Deck, std::vector <int> thrown){
   if(key == "putty" && puttyq == true){
@@ -247,6 +253,7 @@ int main(){
     int innerRandomizer;
     std::string player;
     int YourThrow;
+    std::string key1;
     int YourScore;
     int CPUscore;
     std::vector <int> playerCards = {0,0,0};
@@ -255,6 +262,7 @@ int main(){
     std::cout<< "whats your name?"<< '\n' ;
     std::cin>> player;
     std::cout<< "your cards are: "<< '\n';
+    // std::string key, std::vector <int> Cards, std::vector <int> Deck, std::vector <int> thrown
 
     srand(time(NULL));
             for(int i = 0;i<=2;i++){
@@ -343,14 +351,15 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
         
         
     }
-    
+
+ int CPUthrow = brain(CPUCards,AvailableCards,UsedCards);
+
     for (int i = 0; i <= 2; i++)
     {
          int randomizer1 = rand() % AvailableCards.size();
         CPUCards.at(i) =  AvailableCards.at(randomizer1);
         AvailableCards.erase(AvailableCards.begin() + randomizer1);
     }
-    int CPUthrow = CPUCards.at(1);
 
             if (YourThrow % 15 == 0)
             {
