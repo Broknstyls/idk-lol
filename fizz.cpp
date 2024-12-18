@@ -27,37 +27,107 @@ int AllCardsUsed;
 std::vector <int> AvailableCards = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30};
 std::vector <int> UsedCards;
 int brain(std::string key, std::vector <int> Cards, std::vector <int> Deck, std::vector <int> thrown){
+    int j;
     for (int i = 0; i < Cards.size(); i++)
     {
         if (Cards.at(i) % 15 == 0)
         {
+            j = Cards.at(i);
             if (CPUputtyq == true)
             {
                 CPUmold = Cards.at(i);
                 CPUmoldtimer = 2;
             }
             
-            return i;
+            return j;
         } else if (Cards.at(i) % 5 == 0 && Cards.at(i) >= 20)
         {
+            j = Cards.at(i);
              if (CPUputtyq == true)
             {
                 CPUmold = Cards.at(i);
                 CPUmoldtimer = 2;
             }
-            return i;
+            return 0;
         }
         int minusthree = Cards.at(i) - 3;
         double normal = Cards.at(i);
         int square = sqrt(normal);
-        if (minusthree % 10 == 0 || square % 2 == 0 ||normal == 1 )
+        if (Cards.at(i) % 5 == 0)
         {
-            if (CPUpieq == true)
+             j = i;
+            if (CPUputtyq == true)
             {
-                // port schrodingers pie here;
+                CPUmold = Cards.at(i);
+                CPUmoldtimer = 2;
             }
             
         }
+        if (Cards.at(i) % 3 == 0)
+        {
+             j = i;
+            if (CPUputtyq == true)
+            {
+                CPUmold = Cards.at(i);
+                CPUmoldtimer = 2;
+            }
+            
+        }
+        
+        if (minusthree % 10 == 0 || square % 2 == 0 ||normal == 1 )
+        {
+            int card = Cards.at(i);
+            if (CPUpieq == true)
+            {
+                int pierecipe = rand() % 2;
+                switch (pierecipe)
+                {
+                case 1:
+                    card =card + 2;
+                    break;
+                    
+                
+                default:
+                card = card / 3.14;
+                card = floor(card);
+                    break;
+                }
+                Cards.push_back(card);
+                return card;
+            }
+            
+        } 
+        if (Cards.at(i) % 5 != 0 && Cards.at(i) != 0){
+                if (CPUblenderq == true)
+                {
+                    int drink;
+                    int mix = rand() % 2;
+                    switch (mix)
+                    {
+                    case 1:
+                     drink = drink + Cards.at(i);   
+                        break;
+                    
+                    default:
+                    drink = 1;
+                    drink = drink * Cards.at(i);
+                    if(drink > 30){
+                        drink = drink % 30;
+                        drink = floor(drink);
+                    }
+                        break;
+                    }
+                    if (i == Cards.size())
+                    {
+                        return drink;
+                    }
+                    
+                }
+                
+        }
+        
+        
+        
         
         
         
