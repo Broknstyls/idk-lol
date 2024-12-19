@@ -264,16 +264,53 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
             }
           std::cout<< "you threw a" << YourThrow << '\n';
           std::cout<< "you scored a" << YourScore << '\n';
+                     int CPUthrow;
+
           for (int i = 0; i < CPUCards.size(); i++)
           {
             if (CPUCards.at(i) % 15 == 0)
             {
                 CPUthrow = CPUCards.at(i);
+                if (CPUpieq == true)
+                {
+                    CPUmold = CPUCards.at(i);
+                    CPUmoldtimer = 2;
+                }
+                
+            } else if (CPUCards.at(i) % 5 == 0)
+            {
+                 CPUthrow = CPUCards.at(i);
+                if (CPUpieq == true)
+                {
+                    CPUmold = CPUCards.at(i);
+                    CPUmoldtimer = 2;
+                }
+            } else if (CPUCards.at(i) % 3 == 0)
+            {
+                 CPUthrow = CPUCards.at(i);
+                if (CPUpieq == true)
+                {
+                    CPUmold = CPUCards.at(i);
+                    CPUmoldtimer = 2;
+                }
+            } else if (CPUCards.at(i) % 3 != 0){
+                if (CPUblenderq == true)
+                {
+
+                int minusthree = CPUCards.at(i) - 3;
+                int normal = sqrt(CPUCards.at(i));
+                if (minusthree % 10 == 0 || normal % 2 == 0)
+                {
+                    CPUthrow = CPUCards.at(i);
+                } else{
+                    CPUthrow = CPUCards.at(i);
+                }
+            }
             }
             
           }
           
-           int CPUthrow = CPUCards.at(1);
+
 
 
             if (CPUthrow % 15 == 0)
