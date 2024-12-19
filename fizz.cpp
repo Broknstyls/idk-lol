@@ -15,6 +15,7 @@ int CPUmoldtimer;
 bool blenderq;
 bool CPUblenderq;
 bool plungerq;
+bool CPUplungerq;
 bool plungerconfirm;
 bool pieq;
 bool CPUpieq;
@@ -266,6 +267,22 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
           std::cout<< "you scored a" << YourScore << '\n';
                      int CPUthrow;
 
+     int CPUpowermachine = rand() % 5;
+     switch (CPUpowermachine)
+     {
+     case 1:
+        CPUpieq = true;
+        break;
+     case 2:
+        CPUblenderq = true;
+        break;
+    case 3:
+        CPUputtyq = true;
+        break;
+     default:
+     CPUplungerq = true;
+        break;
+     }        
           for (int i = 0; i < CPUCards.size(); i++)
           {
             if (CPUCards.at(i) % 15 == 0)
@@ -296,16 +313,41 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
             } else if (CPUCards.at(i) % 3 != 0){
                 if (CPUblenderq == true)
                 {
-
                 int minusthree = CPUCards.at(i) - 3;
                 int normal = sqrt(CPUCards.at(i));
                 if (minusthree % 10 == 0 || normal % 2 == 0)
                 {
                     CPUthrow = CPUCards.at(i);
-                } else{
+                }
+         } else if (CPUblenderq == true)
+         {
+            int mix = rand() % 2;
+            int drink;
+            switch (mix)
+            {
+            case 1:
+                for (int i = 0; i < CPUCards.size(); i++)
+                {
+                    drink = drink + CPUCards.at(i);
+                }
+                CPUthrow = drink;
+                break;
+            
+            default:
+            drink= 1;
+            for (int i = 0; i < CPUCards.size(); i++)
+            {
+                drink = drink * CPUCards.at(i);
+            }
+            CPUthrow = drink;
+                break;
+            }
+         }
+         
+                else{
                     CPUthrow = CPUCards.at(i);
                 }
-            }
+            
             }
             
           }
