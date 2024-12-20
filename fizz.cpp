@@ -288,27 +288,30 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
             if (CPUCards.at(i) % 15 == 0)
             {
                 CPUthrow = CPUCards.at(i);
-                if (CPUpieq == true)
+                if (CPUputtyq == true)
                 {
                     CPUmold = CPUCards.at(i);
                     CPUmoldtimer = 2;
+                    CPUputtyq = false;
                 }
                 
             } else if (CPUCards.at(i) % 5 == 0)
             {
                  CPUthrow = CPUCards.at(i);
-                if (CPUpieq == true)
+                if (CPUputtyq == true)
                 {
                     CPUmold = CPUCards.at(i);
                     CPUmoldtimer = 2;
+                    CPUputtyq = false;
                 }
             } else if (CPUCards.at(i) % 3 == 0)
             {
                  CPUthrow = CPUCards.at(i);
-                if (CPUpieq == true)
+                if (CPUputtyq == true)
                 {
                     CPUmold = CPUCards.at(i);
                     CPUmoldtimer = 2;
+                    CPUputtyq = false;
                 }
             } else if (CPUCards.at(i) % 3 != 0){
                 if (CPUblenderq == true)
@@ -317,10 +320,7 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
                 int normal = sqrt(CPUCards.at(i));
                 if (minusthree % 10 == 0 || normal % 2 == 0)
                 {
-                    CPUthrow = CPUCards.at(i);
-                }
-         } else if (CPUblenderq == true)
-         {
+
             int mix = rand() % 2;
             int drink;
             switch (mix)
@@ -342,10 +342,21 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
             CPUthrow = drink;
                 break;
             }
+            CPUblenderq = false;
+         } else if (CPUplungerq == true)
+         {
+            std::cout<< "CPU used the plunger" << "\n";
+                CPUCards.clear();
+                playerCards.clear();
+                CPUPowerUps.clear();
+            std::cout << "all cards have been cleared" << '\n';
+            CPUplungerq = false;
+            main();
+                
          }
-         
-                else{
+         else{
                     CPUthrow = CPUCards.at(i);
+                }
                 }
             
             }
