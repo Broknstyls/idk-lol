@@ -28,7 +28,7 @@ int AllCardsUsed;
 std::vector <int> AvailableCards = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30};
 std::vector <int> UsedCards;
 
-int powerUp(  std::string key, std::vector <int> Cards, std::vector <int> Deck, std::vector <int> thrown){
+int powerUp(std::string key, std::vector <int> Cards, std::vector <int> Deck, std::vector <int> thrown){
   if(key == "putty" && puttyq == true){
     std:: cout<< "what card are you making a copy of:";
     for (int i = 0; i < Cards.size(); i++)
@@ -84,17 +84,8 @@ int powerUp(  std::string key, std::vector <int> Cards, std::vector <int> Deck, 
    pieq = false;
   }
   else if(key == "plunger" || key == "flush" && plungerq == true){
-    for(int i = 0;i<Cards.size();i++){
-        int j;
-        Deck.push_back(Cards.at(i));
-        Cards.erase(Cards.begin() + i);
-
-    }
-    for (int i = 0; i < thrown.size(); i++)
-    {
-        Deck.push_back(thrown.at(i));
-        thrown.erase(thrown.begin() + i);
-    }
+    Cards.clear();
+    playerPowerUps.clear();
     std::cout<< "the board has been purged, scores will remain, but your cards and power ups will be reset" << "\n";
     plungerconfirm = true;
     plungerq = false;
