@@ -302,7 +302,7 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
                 if (CPUputtyq == true)
                 {
                     CPUmold = CPUCards.at(i);
-                    CPUmoldtimer = 2;
+                    CPUmoldtimer = 4;
                     CPUputtyq = false;
                 }
                 
@@ -312,7 +312,7 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
                 if (CPUputtyq == true)
                 {
                     CPUmold = CPUCards.at(i);
-                    CPUmoldtimer = 2;
+                    CPUmoldtimer = 4;
                     CPUputtyq = false;
                 }
             } else if (CPUCards.at(i) % 3 == 0)
@@ -321,7 +321,7 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
                 if (CPUputtyq == true)
                 {
                     CPUmold = CPUCards.at(i);
-                    CPUmoldtimer = 2;
+                    CPUmoldtimer = 4;
                     CPUputtyq = false;
                 }
             } else if (CPUCards.at(i) % 3 != 0){
@@ -333,7 +333,7 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
                 {
 
             int mix = rand() % 2;
-            int drink;
+            int drink = 1;
             switch (mix)
             {
             case 1:
@@ -345,11 +345,17 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
                 break;
             
             default:
-            drink= 1;
             for (int i = 0; i < CPUCards.size(); i++)
             {
                 drink = drink * CPUCards.at(i);
+                
             }
+            if (drink > 30)
+            {
+                drink = drink % 30 + 1;
+                
+            }
+            
             CPUthrow = drink;
                 break;
             }
