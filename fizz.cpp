@@ -2,12 +2,16 @@
 #include <cmath>
 #include <vector>
 #include <windows.h>
+#include <typeinfo>
 std::vector <std::string> playerPowerUps;
 std::vector <std::string> CPUPowerUps;
 int powermachine;
 std::string uncleben;
 std::string activepowerup;
-int puttytimer = 2;
+int puttytimer = 4;
+bool puttyconfirm;
+int liquid;
+std::string YourThrow;
 bool puttyq;
 bool CPUputtyq;
 int CPUmold;
@@ -39,6 +43,7 @@ int powerUp(std::string key, std::vector <int> Cards, std::vector <int> Deck, st
     std::cout<< puttythrow << "has been duplicated" << '\n';
     Cards.push_back(puttythrow);
     puttyq = false;
+    puttyconfirm = true;
     return 0;
   } else if (key == "pie" || key == "schrodingers pie" && pieq == true)
   {
@@ -129,6 +134,11 @@ int powerUp(std::string key, std::vector <int> Cards, std::vector <int> Deck, st
 }
 
 int main(){
+    if (puttyconfirm == true && puttytimer != 0)
+    {
+        puttytimer--;
+    }
+    
     int innerRandomizer;
     std::string player;
     int YourThrow;
@@ -138,8 +148,6 @@ int main(){
     std::vector <int> playerCards = {0,0,0};
     std::vector <int> CPUCards = {0,0,0};
     std::cout<< "welcome to fizzbuzz roulette! "<< '\n';
-    std::cout<< "whats your name?"<< '\n' ;
-    std::cin>> player;
     std::cout<< "your cards are: "<< '\n';
     // std::string key, std::vector <int> Cards, std::vector <int> Deck, std::vector <int> thrown
 
@@ -150,23 +158,26 @@ int main(){
                     std::cout<< playerCards.at(i) << '\n';
                     AvailableCards.erase(AvailableCards.begin() + randomizer);
                                      }
-if (puttyq == true)
-{
 switch (puttytimer)
 {
-case 0:
-    std::cout<< "the putty is drying, you cant use it yet" << '\n';
-    break;
+   
 case 1:
-    std::cout<< "the putty is ready for use" << '\n';
+    std::cout<< "last chance to use the putty" << '\n';
     break;
 case 2:
-    std::cout<< "last chance to use the putty, it will break on the next turn";
+    std::cout<< "putty is ready" << '\n';
+    puttythrow = liquid;
     break;
-case 3:
-    std::cout<< "the putty has broken";
-    puttyq = false;
-}
+case 3: 
+    std::cout<< "putty is drying, cant be used yet" << '\n';
+     liquid = puttythrow;
+    puttythrow = 1;
+    break;
+default:
+    std::cout<< "putty is broken, it cant be used" << '\n';
+    puttyconfirm = false;
+    puttythrow = 1;
+    break;
 }
 std::cout<< "your power up is a: " << '\n';
 powermachine = rand() % 5;
@@ -217,15 +228,24 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
     std::cin>>YourThrow;
     for (int i = 0; i < playerCards.size(); i++)
     {
-        int found;
-        if(YourThrow != playerCards.at(i) && i != playerCards.size()){
-            std::cout<< "testing..." << '\n';
-        } else if (YourThrow == playerCards.at(i)){
+        if (YourThrow == playerCards.at(i)){
                 std::cout<< "card number " << i << " chosen." << '\n';
-                found = 1;
-        } else if (YourThrow != playerCards.at(i) && i ==playerCards.size() && found !=1){
-            std::cout<< "invalid card, start again";
-            return 0;
+                
+        } 
+        else if(YourThrow != playerCards.at(i)){
+                if (YourThrow == puttythrow && puttytimer != 0 && puttytimer >= 3)
+                {
+                    std::cout<< "player used a putty" << '\n';
+                    std::cout<< "they threw a mold of the number" << puttythrow << '\n';
+                }
+                else if (i == playerCards.size() && puttythrow != YourThrow || puttytimer  == 0)
+                {
+                std::cout<< "invalid card, try again" << '\n';
+                YourThrow = 1;
+                }
+            
+            
+            std::cout<< "testing..." << '\n';
         }
         
         
