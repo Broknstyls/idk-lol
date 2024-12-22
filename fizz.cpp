@@ -1,3 +1,4 @@
+
 #include<iostream>
 #include <cmath>
 #include <vector>
@@ -26,6 +27,7 @@ bool CPUpieq;
 bool shaverq;
 bool shaverconfirm;
 bool CPUshaverq;
+bool CPUshaverconfirm;
 int puttythrow;
 int yourpoints;
 int CPUpoints;
@@ -296,6 +298,9 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
     case 3:
         CPUputtyq = true;
         break;
+    case 4:
+    CPUshaverq = true;
+    break;
      default:
      CPUplungerq = true;
         break;
@@ -329,7 +334,11 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
                     CPUmold = CPUCards.at(i);
                     CPUmoldtimer = 4;
                     CPUputtyq = false;
+                } else if (CPUshaverq == true)
+                {
+                    CPUshaverconfirm = true;
                 }
+                
             } else if (CPUCards.at(i) % 3 != 0){
                 if (CPUblenderq == true)
                 {
@@ -421,6 +430,14 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
             }
             
           }
+          else if (CPUshaverconfirm == true && YourScore >= 2)
+          {
+            std::cout<< "the CPU used the shaving machine, your card has been drained"<< '\n';
+            YourScore = 0;
+            
+
+          }
+          
             
    if(YourScore > CPUscore){
     std::cout<< "YOU WIN" << "\n";
