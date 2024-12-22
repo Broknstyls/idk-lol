@@ -24,6 +24,7 @@ bool plungerconfirm;
 bool pieq;
 bool CPUpieq;
 bool shaverq;
+bool shaverconfirm;
 bool CPUshaverq;
 int puttythrow;
 int yourpoints;
@@ -45,7 +46,12 @@ int powerUp(std::string key, std::vector <int> Cards, std::vector <int> Deck, st
     puttyq = false;
     puttyconfirm = true;
     return 0;
-  } else if (key == "pie" || key == "schrodingers pie" && pieq == true)
+  } else if (shaverq == true && key == "buzz" || key == "shaving machine" || key == "shave")
+  {
+    shaverconfirm = true;
+    std::cout<< "the buzzer is on, but it isnt powered up yet"<< '\n';
+  }
+   if (key == "pie" || key == "schrodingers pie" && pieq == true)
   {
     int deadoralive = rand() % 2;
     int cat;
@@ -406,6 +412,15 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
             
             
             
+          if (activepowerup == "shave" || activepowerup == "buzz" || activepowerup == "shaving machine" && shaverconfirm == true)
+          {
+            if (CPUscore >= 2)
+            {
+                std::cout<< "voltage detected, the card has been drained";
+                CPUscore = 0;
+            }
+            
+          }
             
    if(YourScore > CPUscore){
     std::cout<< "YOU WIN" << "\n";
