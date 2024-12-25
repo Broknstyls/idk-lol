@@ -102,6 +102,7 @@ int powerUp(std::string key, std::vector <int> Cards, std::vector <int> Deck, st
     std::cout<< "the board has been purged, scores will remain, but your cards and power ups will be reset" << "\n";
     plungerconfirm = true;
     plungerq = false;
+    
   } else if (key == "blender" || key == "food processor" || key == "blend" && blenderq == true)
   {
     int mode = rand() % 2;
@@ -446,6 +447,22 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
    {
     std::cout<< "you lose" << "\n";
     CPUpoints++;
+   } else{
+        if (YourThrow > CPUthrow)
+        {
+            std::cout<< "you win by magnitude," << '\n';
+            yourpoints++;
+        } else if (CPUthrow > YourThrow)
+        {
+            std::cout<< "THE CPU won by magnitude" << "\n";
+            CPUpoints++;
+        } else
+        {
+            std::cout<< "nigga how did you draw?  you know how hard that is?" << "\n";
+        }
+        
+        
+        
    }
    std::cout<< "do you want to play again?" << "\n";
    std::string playagain;
