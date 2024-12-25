@@ -4,6 +4,7 @@
 #include <vector>
 #include <windows.h>
 #include <typeinfo>
+#include <bits/stdc++.h>
 std::vector <std::string> playerPowerUps;
 std::vector <std::string> CPUPowerUps;
 int powermachine;
@@ -32,6 +33,7 @@ int puttythrow;
 int yourpoints;
 int CPUpoints;
 int AllCardsUsed;
+int powerusage;
 std::vector <int> AvailableCards = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30};
 std::vector <int> UsedCards;
 
@@ -116,6 +118,7 @@ int powerUp(std::string key, std::vector <int> Cards, std::vector <int> Deck, st
             Cards.erase(Cards.begin());
 
         }
+
         Cards.push_back(result);
         break;
     
@@ -124,7 +127,6 @@ int powerUp(std::string key, std::vector <int> Cards, std::vector <int> Deck, st
     for (int i = 0; i < Cards.size(); i++)
     {
         result = result * Cards.at(i);
-        std:
         Cards.erase(Cards.begin());
     }
     Cards.push_back(result);
@@ -167,6 +169,10 @@ int main(){
                     std::cout<< playerCards.at(i) << '\n';
                     AvailableCards.erase(AvailableCards.begin() + randomizer);
                                      }
+                                     
+if (puttyconfirm == true)
+{
+
 switch (puttytimer)
 {
    
@@ -187,6 +193,7 @@ default:
     puttyconfirm = false;
     puttythrow = 1;
     break;
+}
 }
 std::cout<< "your power up is a: " << '\n';
 powermachine = rand() % 5;
@@ -227,7 +234,8 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
             {
                 std::cout<< playerPowerUps.at(i) << '\n';
             }
-            std::cin >> activepowerup;
+            std::cin >> activepowerup;            
+    
             powerUp(activepowerup,playerCards,AvailableCards,UsedCards);
             if(plungerconfirm== true ){
                 main();
