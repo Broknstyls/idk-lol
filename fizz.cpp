@@ -1,4 +1,3 @@
-
 #include<iostream>
 #include <cmath>
 #include <vector>
@@ -49,7 +48,6 @@ int powerUp(std::string key, std::vector <int> Cards, std::vector <int> Deck, st
     Cards.push_back(puttythrow);
     puttyq = false;
     puttyconfirm = true;
-    return 0;
   } else if (shaverq == true && key == "buzz" || key == "shaving machine" || key == "shave")
   {
     shaverconfirm = true;
@@ -158,6 +156,19 @@ int main(){
     int CPUscore;
     std::vector <int> playerCards = {0,0,0};
     std::vector <int> CPUCards = {0,0,0};
+    if (AvailableCards.size() < 6)
+    {
+         std::cout<< "game over"<< '\n';
+    if (yourpoints > CPUpoints)
+    {
+        std::cout << "you won by " << yourpoints - CPUpoints << " points!";
+    } else if (CPUpoints > yourpoints)
+    {
+        std::cout<< "you lost by" << CPUpoints - yourpoints << " points...";
+    }
+    return 0;
+    }
+    
     std::cout<< "welcome to fizzbuzz roulette! "<< '\n';
     std::cout<< "your cards are: "<< '\n';
     // std::string key, std::vector <int> Cards, std::vector <int> Deck, std::vector <int> thrown
@@ -225,15 +236,17 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
     shaverq = true;
     break;
 }
+std::cout<< "your power ups are: " << '\n';
+ for (int i = 0; i < playerPowerUps.size(); i++)
+            {
+                std::cout<< playerPowerUps.at(i) << '\n';
+            }
         std::cout<< " are you using any power up?: " << '\n';
         std::cin>> uncleben; 
 
         if(uncleben == "yes"){
             std:: cout<< " which power up are you choosing? " << '\n';
-            for (int i = 0; i < playerPowerUps.size(); i++)
-            {
-                std::cout<< playerPowerUps.at(i) << '\n';
-            }
+           
             std::cin >> activepowerup;            
     
             powerUp(activepowerup,playerCards,AvailableCards,UsedCards);
@@ -376,7 +389,7 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
             }
             if (drink > 30)
             {
-                drink = drink % 30 + 1;
+                drink = drink % 30;
                 
             }
             
@@ -436,6 +449,7 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
             {
                 std::cout<< "voltage detected, the card has been drained";
                 CPUscore = 0;
+                shaverconfirm = false;
             }
             
           }
@@ -443,7 +457,7 @@ default: std::cout<< "a shaving machine but its unplugged, needs some voltage to
           {
             std::cout<< "the CPU used the shaving machine, your card has been drained"<< '\n';
             YourScore = 0;
-            
+            CPUshaverconfirm = false;
 
           }
           
