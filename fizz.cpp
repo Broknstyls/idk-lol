@@ -17,8 +17,6 @@ bool puttyq;
 bool CPUputtyq;
 int CPUmold;
 int CPUmoldtimer;
-bool blenderq;
-bool CPUblenderq;
 bool plungerq;
 bool CPUplungerq;
 bool plungerconfirm;
@@ -103,41 +101,6 @@ int powerUp(std::string key, std::vector <int> Cards, std::vector <int> Deck, st
     plungerconfirm = true;
     plungerq = false;
     
-  } else if (key == "blender" || key == "food processor" || key == "blend" && blenderq == true)
-  {
-    int mode = rand() % 2;
-    int result;
-    switch (mode)
-    {
-    case 1:
-        for (int i = 0; i < Cards.size(); i++)
-        {
-            result = result + Cards.at(i);
-            Cards.erase(Cards.begin());
-
-        }
-
-        Cards.push_back(result);
-        break;
-    
-    default:
-    result;
-    for (int i = 0; i < Cards.size(); i++)
-    {
-        result = result * Cards.at(i);
-        Cards.erase(Cards.begin());
-    }
-    Cards.push_back(result);
-        break;
-    }
-    if (result > 30)
-    {
-        result = result % 30;
-    }
-    
-            std::cout<< "your cards were all blended," <<'\n';
-        std::cout<< result << " is your new card";
-        blenderq = false;
   } 
   return 0;
 }
@@ -207,7 +170,7 @@ default:
 }
 }
 std::cout<< "your power up is a: " << '\n';
-powermachine = rand() % 5;
+powermachine = rand() % 4;
 switch (powermachine)
 {
 case 1:
@@ -225,12 +188,7 @@ case 3:
     plungerq = true;
     playerPowerUps.push_back("Plunger");
     break;
-case 4:
-    std::cout<< "a blender?, really?" <<'\n';
-    std:: cout<< "my intern tells me its a food processor, personally i dont get it" << '\n';
-    playerPowerUps.push_back("food processor that looks eerily close to a blender");
-    blenderq =true;
-    break;
+
 default: std::cout<< "a shaving machine but its unplugged, needs some voltage to work,"<<'\n';
         playerPowerUps.push_back("buzzer without a buzz");
     shaverq = true;
@@ -308,19 +266,16 @@ std::cout<< "your power ups are: " << '\n';
           std::cout<< "you scored a" << YourScore << '\n';
                      int CPUthrow;
 
-     int CPUpowermachine = rand() % 5;
+     int CPUpowermachine = rand() % 4;
      switch (CPUpowermachine)
      {
      case 1:
         CPUpieq = true;
         break;
-     case 2:
-        CPUblenderq = true;
-        break;
-    case 3:
+    case 2:
         CPUputtyq = true;
         break;
-    case 4:
+    case 3:
     CPUshaverq = true;
     break;
      default:
@@ -362,42 +317,7 @@ std::cout<< "your power ups are: " << '\n';
                 }
                 
             } else if (CPUCards.at(i) % 3 != 0){
-                if (CPUblenderq == true)
-                {
-                int minusthree = CPUCards.at(i) - 3;
-                int normal = sqrt(CPUCards.at(i));
-                if (minusthree % 10 == 0 || normal % 2 == 0)
-                {
-
-            int mix = rand() % 2;
-            int drink = 1;
-            switch (mix)
-            {
-            case 1:
-                for (int i = 0; i < CPUCards.size(); i++)
-                {
-                    drink = drink + CPUCards.at(i);
-                }
-                CPUthrow = drink;
-                break;
-            
-            default:
-            for (int i = 0; i < CPUCards.size(); i++)
-            {
-                drink = drink * CPUCards.at(i);
-                
-            }
-            if (drink > 30)
-            {
-                drink = drink % 30;
-                
-            }
-            
-            CPUthrow = drink;
-                break;
-            }
-            CPUblenderq = false;
-         } else if (CPUplungerq == true)
+                if (CPUplungerq == true)
          {
             std::cout<< "CPU used the plunger" << "\n";
                 CPUCards.clear();
@@ -415,7 +335,7 @@ std::cout<< "your power ups are: " << '\n';
             
             }
             
-          }
+          
           
 
 
@@ -427,7 +347,7 @@ std::cout<< "your power ups are: " << '\n';
             } else if (CPUthrow % 5 == 0)
             {
                 CPUscore = 2;
-                /* code */
+                
             } else if (CPUthrow % 3 == 0)
             {
                 CPUscore = 1;
