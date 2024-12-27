@@ -169,27 +169,28 @@ default:
 }
 }
 std::cout<< "your power up is a: " << '\n';
+//powermachine = 1;
 powermachine = rand() % 4;
 switch (powermachine)
 {
 case 1:
     std::cout<< "Paper mache"<< '\n';
     puttyq = true;
-    playerPowerUps.push_back("Putty");
+    playerPowerUps.push_back("putty");
     break;
 case 2:
-    std::cout<< " Schrodingers pie" << '\n';
+    std::cout<< "schrodingers pie" << '\n';
     pieq = true;
-    playerPowerUps.push_back("Schrodinger's pie");
+    playerPowerUps.push_back("pie");
     break;
 case 3: 
-    std::cout<< " A plunger, it can attach to the bottom of the table..." << '\n';
+    std::cout<< "a plunger" << '\n';
     plungerq = true;
-    playerPowerUps.push_back("Plunger");
+    playerPowerUps.push_back("plunger");
     break;
 
-default: std::cout<< "a shaving machine but its unplugged, needs some voltage to work,"<<'\n';
-        playerPowerUps.push_back("buzzer without a buzz");
+default: std::cout<< "a shaving machine, it isnt powered up tho, waiting for voltage"<<'\n';
+        playerPowerUps.push_back("shaver");
     shaverq = true;
     break;
 }
@@ -204,7 +205,30 @@ std::cout<< "your power ups are: " << '\n';
         if(uncleben == "yes"){
             std:: cout<< " which power up are you choosing? " << '\n';
            
-            std::cin >> activepowerup;            
+            std::cin >> activepowerup;     
+            if (activepowerup == "shaving" || activepowerup == "Shaver" || activepowerup == "Shaving")
+            {
+                activepowerup = "shaver";
+            } else if (activepowerup == "flush" || activepowerup == "Flush" || activepowerup == "Plunger" )
+            {
+                activepowerup = "plunger";
+            } else if (activepowerup == "paper" || activepowerup == "Paper" || activepowerup == "Mache" || activepowerup == "mache" || activepowerup == "Putty")
+            {
+                activepowerup = "putty";
+            }
+            else if (activepowerup == "schrodinger" || activepowerup == "Schrodinger" || activepowerup == "Pie")
+            {
+                activepowerup = "pie";
+            }
+            
+            
+                   
+    for (int i = 0; i < playerPowerUps.size(); i++)
+    {
+        if(activepowerup == playerPowerUps.at(i)){
+            playerPowerUps.erase(playerPowerUps.begin() + i);
+        }
+    }
     
             powerUp(activepowerup,playerCards,AvailableCards,UsedCards);
             if(plungerconfirm== true ){
@@ -213,15 +237,16 @@ std::cout<< "your power ups are: " << '\n';
         }
     std::cout<< "which card are you choosing: "<< '\n';
     std::cin>>YourThrow;
+    int found;
     for (int i = 0; i < playerCards.size(); i++)
     {
         if (YourThrow == playerCards.at(i)){
                 std::cout<< "card number " << i << " chosen." << '\n';
-                
+                found = 5;
         } 
         else if(YourThrow != playerCards.at(i)){
     
-        if (i == playerCards.size() && puttythrow != YourThrow || puttytimer  == 0)
+        if (i == playerCards.size() && found != 5)
                 {
                 std::cout<< "invalid card, try again" << '\n';
                 YourThrow = 1;
