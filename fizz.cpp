@@ -46,7 +46,7 @@ int powerUp(std::string key, std::vector <int> Cards, std::vector <int> Deck, st
     Cards.push_back(puttythrow);
     puttyq = false;
     puttyconfirm = true;
-  } else if (shaverq == true && key == "buzz" || key == "shaving machine" || key == "shave")
+  } else if (shaverq == true && key == "shaver" || key == "shaving machine" || key == "shave")
   {
     shaverconfirm = true;
     std::cout<< "the buzzer is on, but it isnt powered up yet"<< '\n';
@@ -134,7 +134,6 @@ int main(){
     
     std::cout<< "welcome to fizzbuzz roulette! "<< '\n';
     std::cout<< "your cards are: "<< '\n';
-    // std::string key, std::vector <int> Cards, std::vector <int> Deck, std::vector <int> thrown
 
     srand(time(NULL));
             for(int i = 0;i<=2;i++){
@@ -221,12 +220,8 @@ std::cout<< "your power ups are: " << '\n';
                 
         } 
         else if(YourThrow != playerCards.at(i)){
-                if (YourThrow == puttythrow && puttytimer != 0 && puttytimer >= 3)
-                {
-                    std::cout<< "player used a putty" << '\n';
-                    std::cout<< "they threw a mold of the number" << puttythrow << '\n';
-                }
-                else if (i == playerCards.size() && puttythrow != YourThrow || puttytimer  == 0)
+    
+        if (i == playerCards.size() && puttythrow != YourThrow || puttytimer  == 0)
                 {
                 std::cout<< "invalid card, try again" << '\n';
                 YourThrow = 1;
