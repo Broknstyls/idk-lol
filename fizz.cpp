@@ -47,7 +47,8 @@ int powerUp(std::string key, std::vector <int> Cards, std::vector <int> Deck, st
     Cards.push_back(puttythrow);
     puttyq = false;
     puttyconfirm = true;
-  } else if (shaverq == true && key == "shaver" || key == "shaving machine" || key == "shave")
+  } 
+  if (shaverq == true && key == "shaver")
   {
     shaverconfirm = true;
     std::cout<< "the buzzer is on, but it isnt powered up yet"<< '\n';
@@ -95,7 +96,7 @@ int powerUp(std::string key, std::vector <int> Cards, std::vector <int> Deck, st
    }
    pieq = false;
   }
-  else if(key == "plunger" || key == "flush" && plungerq == true){
+  if(key == "plunger" || key == "flush" && plungerq == true){
     Cards.clear();
     playerPowerUps.clear();
     std::cout<< "the board has been purged, scores will remain, but your cards and power ups will be reset" << "\n";
@@ -367,12 +368,12 @@ std::cout<< "your power ups are: " << '\n';
                 }
             
             }
-            
-          
-          
-
-
-
+            if(CPUthrow > 30){
+            CPUthrow = CPUthrow % 30;
+          }
+          if(CPUthrow == 0 ){
+            CPUthrow = 1;
+          } 
             if (CPUthrow % 15 == 0)
             {
                 CPUscore = 3;
