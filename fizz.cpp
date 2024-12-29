@@ -1,3 +1,4 @@
+
 #include<iostream>
 #include <cmath>
 #include <vector>
@@ -133,6 +134,7 @@ int main(){
     }
     
     std::cout<< "welcome to fizzbuzz roulette! "<< '\n';
+    Sleep(2000);
     std::cout<< "your cards are: "<< '\n';
 
     srand(time(NULL));
@@ -140,6 +142,7 @@ int main(){
                     int randomizer = rand() % AvailableCards.size();
                     playerCards.at(i) =  AvailableCards.at(randomizer);
                     std::cout<< playerCards.at(i) << '\n';
+                    Sleep(500);
                     AvailableCards.erase(AvailableCards.begin() + randomizer);
                                      }
                                      
@@ -151,13 +154,16 @@ switch (puttytimer)
    
 case 1:
     std::cout<< "last chance to use the putty" << '\n';
+    Sleep(1000);
     break;
 case 2:
     std::cout<< "putty is ready" << '\n';
+    Sleep(1000);
     puttythrow = liquid;
     break;
 case 3: 
     std::cout<< "putty is drying, cant be used yet" << '\n';
+    Sleep(1000);
      liquid = puttythrow;
     puttythrow = 1;
     break;
@@ -169,6 +175,7 @@ default:
 }
 }
 std::cout<< "your power up is a: " << '\n';
+Sleep(500);
 //powermachine = 1;
 powermachine = rand() % 4;
 switch (powermachine)
@@ -197,6 +204,7 @@ default: std::cout<< "a shaving machine, it isnt powered up tho, waiting for vol
 std::cout<< "your power ups are: " << '\n';
  for (int i = 0; i < playerPowerUps.size(); i++)
             {
+             Sleep(500);
                 std::cout<< playerPowerUps.at(i) << '\n';
             }
         std::cout<< " are you using any power up?: " << '\n';
@@ -235,13 +243,15 @@ std::cout<< "your power ups are: " << '\n';
                 main();
             }
         }
+    Sleep(1000);
     std::cout<< "which card are you choosing: "<< '\n';
     std::cin>>YourThrow;
     int found;
     for (int i = 0; i < playerCards.size(); i++)
     {
         if (YourThrow == playerCards.at(i)){
-                std::cout<< "card number " << i << " chosen." << '\n';
+                std::cout<< "card number " << i+1 << " chosen." << '\n';
+                Sleep(1000);
                 found = 5;
         } 
         else if(YourThrow != playerCards.at(i)){
@@ -252,7 +262,7 @@ std::cout<< "your power ups are: " << '\n';
                 YourThrow = 1;
                 }
             
-            
+            Sleep(500);
             std::cout<< "testing..." << '\n';
         }
         
@@ -283,7 +293,9 @@ std::cout<< "your power ups are: " << '\n';
                 YourScore =0;
             }
           std::cout<< "you threw a" << YourThrow << '\n';
+          Sleep(2000);
           std::cout<< "you scored a" << YourScore << '\n';
+          Sleep(500);
                      int CPUthrow;
 
      int CPUpowermachine = rand() % 4;
@@ -343,6 +355,7 @@ std::cout<< "your power ups are: " << '\n';
                 CPUCards.clear();
                 playerCards.clear();
                 CPUPowerUps.clear();
+                Sleep(2000);
             std::cout << "all cards have been cleared" << '\n';
             CPUplungerq = false;
             main();
@@ -376,7 +389,7 @@ std::cout<< "your power ups are: " << '\n';
                 CPUscore =0;
             }
         std::cout<< "The CPU threw a" << CPUthrow << '\n';
-
+        Sleep(2000);
         std::cout<< "it scored " << CPUscore; 
 
             
@@ -396,12 +409,13 @@ std::cout<< "your power ups are: " << '\n';
           else if (CPUshaverconfirm == true && YourScore >= 2)
           {
             std::cout<< "the CPU used the shaving machine, your card has been drained"<< '\n';
+            Sleep(3000);
             YourScore = 0;
             CPUshaverconfirm = false;
 
           }
           
-            
+            Sleep(500);
    if(YourScore > CPUscore){
     std::cout<< "YOU WIN" << "\n";
     yourpoints++;
@@ -433,15 +447,18 @@ std::cout<< "your power ups are: " << '\n';
     for (int i = 0; i <=2; i++)
     {
         std::cout << playerCards.at(i) << " was thrown away" << '\n';
+        Sleep(500);
     }
     for (int j = 0;j <=2;j++){
             std::cout<< CPUCards.at(j) << " was thrown away" << '\n';
+            Sleep(500);
     }
     main();
    }
    else if (playagain == "no" || AvailableCards.size() == 0)
    {
     std::cout<< "game over"<< '\n';
+    Sleep(500);
     if (yourpoints > CPUpoints)
     {
         std::cout << "you won by " << yourpoints - CPUpoints << " points!";
