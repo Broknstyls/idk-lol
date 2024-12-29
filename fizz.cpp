@@ -37,7 +37,7 @@ std::vector <int> UsedCards;
 
 int powerUp(std::string key, std::vector <int> Cards, std::vector <int> Deck, std::vector <int> thrown){
   if(key == "putty" && puttyq == true){
-    std:: cout<< "what card are you making a copy of:";
+    std:: cout<< "what card are you making a copy of:" << '\n';
     for (int i = 0; i < Cards.size(); i++)
     {
         std::cout<< Cards.at(i) << '\n';
@@ -127,11 +127,13 @@ int main(){
     if (yourpoints > CPUpoints)
     {
         std::cout << "you won by " << yourpoints - CPUpoints << " points!";
-    } else if (CPUpoints > yourpoints)
+        return 0;
+    } 
+    if (CPUpoints > yourpoints)
     {
         std::cout<< "you lost by" << CPUpoints - yourpoints << " points...";
+        return 0;
     }
-    return 0;
     }
     
     std::cout<< "welcome to fizzbuzz roulette! "<< '\n';
@@ -391,7 +393,7 @@ std::cout<< "your power ups are: " << '\n';
             }
         std::cout<< "The CPU threw a" << CPUthrow << '\n';
         Sleep(2000);
-        std::cout<< "it scored " << CPUscore; 
+        std::cout<< "it scored " << CPUscore << '\n'; 
 
             
             
