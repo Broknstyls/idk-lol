@@ -131,20 +131,8 @@ int main(){
     int CPUscore;
     std::vector <int> playerCards = {0,0,0};
     std::vector <int> CPUCards = {0,0,0};
-    if (AvailableCards.size() < 6)
-    {
-         std::cout<< "game over"<< '\n';
-    if (yourpoints > CPUpoints)
-    {
-        std::cout << "you won by " << yourpoints - CPUpoints << " points!";
-        return 0;
-    } 
-    if (CPUpoints > yourpoints)
-    {
-        std::cout<< "you lost by" << CPUpoints - yourpoints << " points...";
-        return 0;
-    }
-    }
+    
+    
     
     std::cout<< "welcome to fizzbuzz roulette! "<< '\n';
     Sleep(2000);
