@@ -35,7 +35,7 @@ int powerusage;
 std::vector <int> AvailableCards = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30};
 std::vector <int> UsedCards;
 
-int powerUp(std::string key, std::vector <int> Cards, std::vector <int> Deck, std::vector <int> thrown){
+int powerUp(std::string key, std::vector <int> Cards, std::vector <int> Deck, std::vector <int> thrown, std::vector <int> CPU){
   if(key == "putty" && puttyq == true){
     std:: cout<< "what card are you making a copy of:" << '\n';
     for (int i = 0; i < Cards.size(); i++)
@@ -97,7 +97,17 @@ int powerUp(std::string key, std::vector <int> Cards, std::vector <int> Deck, st
    pieq = false;
   }
   if(key == "plunger" || key == "flush" && plungerq == true){
+    for (int i = 0; i < Cards.size(); i++)
+    {
+        Deck.push_back(Cards.at(i));
+    }
+    for (int i = 0; i < CPU.size(); i++)
+    {
+        Deck.push_back(CPU.at(i));
+    }
+    
     Cards.clear();
+    CPU.clear();
     playerPowerUps.clear();
     std::cout<< "the board has been purged, scores will remain, but your cards and power ups will be reset" << "\n";
     plungerconfirm = true;
@@ -241,7 +251,7 @@ std::cout<< "your power ups are: " << '\n';
         }
     }
     
-            powerUp(activepowerup,playerCards,AvailableCards,UsedCards);
+            powerUp(activepowerup,playerCards,AvailableCards,UsedCards,CPUCards);
             if(plungerconfirm== true ){
                 main();
             }
@@ -355,12 +365,20 @@ std::cout<< "your power ups are: " << '\n';
                 if (CPUplungerq == true)
          {
             std::cout<< "CPU used the plunger" << "\n";
+            for(int i = 0; i < CPUCards.size(); i++){
+                AvailableCards.push_back(CPUCards.at(i));
+            }
                 CPUCards.clear();
+                for(int i = 0; i < playerCards.size(); i++){
+                    AvailableCards.push_back(playerCards.at(i));
+                }
                 playerCards.clear();
-                CPUPowerUps.clear();
+                CPUplungerq = false;
+                CPUputtyq = false;
+                CPUpieq = false;
+                CPUshaverq = false;
                 Sleep(2000);
             std::cout << "all cards have been cleared" << '\n';
-            CPUplungerq = false;
             main();
                 
          }

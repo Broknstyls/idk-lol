@@ -1,3 +1,5 @@
 ideas
 
 i genuinely have no idea what to do with this code
+
+try using plunger to push the values back up
