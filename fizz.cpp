@@ -1,4 +1,3 @@
-
 #include<iostream>
 #include <cmath>
 #include <vector>
@@ -464,16 +463,18 @@ std::cout<< "your power ups are: " << '\n';
     }
     main();
    }
-   else if (playagain == "no" || AvailableCards.size() == 0)
+   else if (playagain == "no" || AvailableCards.size()  < 1)
    {
     std::cout<< "game over"<< '\n';
     Sleep(500);
     if (yourpoints > CPUpoints)
     {
         std::cout << "you won by " << yourpoints - CPUpoints << " points!";
+        return 0;
     } else if (CPUpoints > yourpoints)
     {
         std::cout<< "you lost by" << CPUpoints - yourpoints << " points...";
+        return 0;
     }
     
     return 0;
